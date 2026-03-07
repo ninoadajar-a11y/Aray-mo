@@ -152,6 +152,69 @@ body{
                 }
             }, 500);
         });
+        let spinning=false;
+
+function spin(){
+
+if(spinning) return;
+spinning=true;
+
+let wheel=document.getElementById("wheel");
+let result=document.getElementById("result");
+let loading=document.getElementById("loading");
+
+result.style.opacity="0";
+loading.style.display="block";
+
+/* GOD MODE RANDOMIZER */
+let prizeList=[
+"₱10,000",
+"₱5,000",
+"₱1,000",
+"₱500",
+"Try Again"
+];
+
+let prize=prizeList[Math.floor(Math.random()*prizeList.length)];
+
+let rotation=720 + Math.random()*2000;
+
+wheel.style.transform="rotate("+rotation+"deg)";
+
+setTimeout(()=>{
+    loading.style.display="none";
+
+    wheel.innerText="🎁 "+prize;
+
+    result.innerText="🎉 You Won "+prize+"!";
+    result.style.opacity="1";
+
+    startConfetti();
+
+    spinning=false;
+
+},6000);
+
+}
+
+function startConfetti(){
+for(let i=0;i<80;i++){
+
+let c=document.createElement("div");
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+c.style.background=[
+"red","yellow","blue","orange","green","purple"
+][Math.floor(Math.random()*6)];
+
+c.style.animationDuration=(2+Math.random()*3)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),6000);
+}
+}
     </script>
 </body>
 
